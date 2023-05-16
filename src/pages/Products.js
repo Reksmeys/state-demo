@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { Card } from "../components/Card"
 import Loading from "../components/Laoding"
 
@@ -14,13 +15,12 @@ function Product(){
     }])
     // function to get data from api
     const getProducts = () => {
-        fetch("https://api.escuelajs.co/api/v1/products")
+        fetch("https://api.escuelajs.co/api/v1/products?limit=20&offset=1")
         .then(resp => resp.json())
         .then(resp => {
             setProducts(resp)
             setLoading(false) 
-            // loading is set to false when data response
-            
+            // loading is set to false when data response 
         })
     }
     // when page load
@@ -35,7 +35,9 @@ function Product(){
                 {
                     loading ? <Loading /> : products.map(product => (
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <Card title={product.title} thumbnail={product.images[0]} />
+                            <Link to={`/products/${product.id}`} className="text-decoration-none">
+                                <Card title={product.title} thumbnail={product.images[0]} />
+                            </Link>
                         </div>
                     ))
                 }

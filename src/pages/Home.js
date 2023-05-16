@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import { Card } from '../components/Card';
+import Product from './Products';
 
 // state in hook - useState
 function Home(){
@@ -21,20 +22,7 @@ function Home(){
     )
     return(
         <>
-            <h1>You clicked {count} times</h1>
-            <button onClick={() => setCount(count + 1)}>Click Me</button>
-            <hr/>
-            <section>
-                <div className='row'>
-                    {
-                        products.map(product => (
-                            <div className='col-12 col-sm-6 col-md-3'>
-                                <Card title={product.title} thumbnail={product.thumbnail} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
+            <Product />
         </>
     )
 }
